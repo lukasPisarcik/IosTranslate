@@ -11,7 +11,7 @@ struct ContentView: View {
     var body: some View {
         TabView{
             NavigationView {
-                TranslateView(toLang: "English", inputText: "")
+                TranslateView()
                     .navigationTitle("Translate")
             }
             .tabItem {

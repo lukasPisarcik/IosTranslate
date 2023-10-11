@@ -9,24 +9,22 @@ import SwiftUI
 
 struct TranslateView: View {
     
-    @State var toLang: String
-    @State var inputText: String
+    @StateObject var viewModel = TranslateViewViewModel()
     
     let languages = ["Slovak", "Czech", "English"]
     
     var body: some View {
         
         VStack {
-            
             // Text field
-            TextField("Enter text", text: self.$inputText, axis: .vertical)
+            TextField("Enter text", text: $viewModel.inputText, axis: .vertical)
                 .lineLimit(5, reservesSpace: true)
                 .textFieldStyle(.roundedBorder)
-                .padding()
-            
+                .padding(
+                )
             HStack {
                 // Language change
-                Picker("Translate to", selection: $toLang) {
+                Picker("Translate to", selection: $viewModel.fromLang) {
                     ForEach(languages, id: \.self) { language in
                         Text(language).tag(language)
                     }
@@ -35,28 +33,36 @@ struct TranslateView: View {
                 
                 // Change inputs button
                 Button {
-                    
+                    viewModel.toggleLanguageSwitch()
                 } label: {
                     Image(systemName: "repeat")
                 }
                 .buttonStyle(.borderedProminent)
-                .padding()
+                
+                // Language change
+                Picker("Translate to", selection: $viewModel.toLang) {
+                    ForEach(languages, id: \.self) { language in
+                        Text(language).tag(language)
+                    }
+                }
+                .labelsHidden()
             }
             
             // Translation result
-            TextField("Translation...", text: self.$inputText, axis: .vertical)
+            TextField("Translation...", text: $viewModel.outputText)
+                .disabled(true)
                 .lineLimit(5, reservesSpace: true)
                 .textFieldStyle(.roundedBorder)
                 .padding()
             Button {
                 // Translate
+                viewModel.translate()
             } label: {
                 Text("Translate")
             }
             .buttonStyle(.borderedProminent)
             .font(.headline)
             .fontWeight(.bold)
-            .padding()
         }
         Spacer()
     }
@@ -64,6 +70,6 @@ struct TranslateView: View {
 
 struct TranslateView_Previews: PreviewProvider {
     static var previews: some View {
-        TranslateView(toLang: "English", inputText: "")
+        TranslateView()
     }
 }
