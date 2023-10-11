@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MLKit
 
 class TranslateViewViewModel: ObservableObject {
     
@@ -13,6 +14,7 @@ class TranslateViewViewModel: ObservableObject {
     @Published var toLang: String = ""
     @Published var inputText: String = ""
     @Published var outputText: String = ""
+    
     
     init(){}
     
@@ -24,7 +26,30 @@ class TranslateViewViewModel: ObservableObject {
             print("invalid")
             return
         }
-        print("translate")
+        makeTheTranslation()
+    }
+    
+    func makeTheTranslation(){
+        // Create an English-German translator:
+        let options = TranslatorOptions(sourceLanguage: .english, targetLanguage: .german)
+        let englishGermanTranslator = Translator.translator(options: options)
+        
+        let conditions = ModelDownloadConditions(
+            allowsCellularAccess: false,
+            allowsBackgroundDownloading: true
+        )
+        englishGermanTranslator.downloadModelIfNeeded(with: conditions) { error in
+            guard error == nil else { return }
+            
+            // Model downloaded successfully. Okay to start translating.
+            englishGermanTranslator.translate("Hello world") { translatedText, error in
+                guard error == nil, let translatedText = translatedText else { return }
+                
+                // Translation succeeded.
+                self.outputText = translatedText
+                
+            }
+        }
     }
     
     func toggleLanguageSwitch(){

@@ -53,6 +53,7 @@ struct TranslateView: View {
                 .disabled(true)
                 .lineLimit(5, reservesSpace: true)
                 .textFieldStyle(.roundedBorder)
+                .frame(height:120)
                 .padding()
             Button {
                 // Translate
