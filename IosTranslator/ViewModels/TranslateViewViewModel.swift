@@ -10,50 +10,53 @@ import MLKit
 
 class TranslateViewViewModel: ObservableObject {
     
-    @Published var fromLang: String = ""
-    @Published var toLang: String = ""
     @Published var inputText: String = ""
     @Published var outputText: String = ""
+    @Published var allLanguages: [TranslateLanguage] = Array(TranslateLanguage.allLanguages())
+    @Published var fromLang: TranslateLanguage = .english
+    @Published var toLang: TranslateLanguage = .english
     
     
     init(){}
     
     func translate() {
-        guard !inputText.trimmingCharacters(in: .whitespaces).isEmpty,
-              !fromLang.trimmingCharacters(in: .whitespaces).isEmpty,
-              !toLang.trimmingCharacters(in: .whitespaces).isEmpty
-        else {
+        guard !inputText.trimmingCharacters(in: .whitespaces).isEmpty else {
             print("invalid")
             return
         }
-        makeTheTranslation()
-    }
-    
-    func makeTheTranslation(){
-        // Create an English-German translator:
-        let options = TranslatorOptions(sourceLanguage: .english, targetLanguage: .german)
-        let englishGermanTranslator = Translator.translator(options: options)
+                
+        let translator = Translator.translator(
+            options: TranslatorOptions(
+                sourceLanguage: fromLang,
+                targetLanguage: toLang
+            )
+        )
         
+        // download options
         let conditions = ModelDownloadConditions(
             allowsCellularAccess: false,
             allowsBackgroundDownloading: true
         )
-        englishGermanTranslator.downloadModelIfNeeded(with: conditions) { error in
+        
+        // download model
+        translator.downloadModelIfNeeded(with: conditions) { error in
             guard error == nil else { return }
             
             // Model downloaded successfully. Okay to start translating.
-            englishGermanTranslator.translate("Hello world") { translatedText, error in
+            translator.translate(self.inputText) { translatedText, error in
                 guard error == nil, let translatedText = translatedText else { return }
                 
                 // Translation succeeded.
                 self.outputText = translatedText
-                
             }
         }
     }
     
     func toggleLanguageSwitch(){
         print("From Language: \(fromLang)")
+        print("To Language: \(toLang)")
+        (fromLang, toLang) = (toLang, fromLang)
+        print("*From Language: \(fromLang)")
         print("To Language: \(toLang)")
     }
 }

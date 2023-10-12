@@ -10,9 +10,7 @@ import SwiftUI
 struct TranslateView: View {
     
     @StateObject var viewModel = TranslateViewViewModel()
-    
-    let languages = ["Slovak", "Czech", "English"]
-    
+        
     var body: some View {
         
         VStack {
@@ -25,8 +23,8 @@ struct TranslateView: View {
             HStack {
                 // Language change
                 Picker("Translate to", selection: $viewModel.fromLang) {
-                    ForEach(languages, id: \.self) { language in
-                        Text(language).tag(language)
+                    ForEach(viewModel.allLanguages, id: \.self) { language in
+                        Text(language.rawValue).tag(language)
                     }
                 }
                 .labelsHidden()
@@ -41,8 +39,8 @@ struct TranslateView: View {
                 
                 // Language change
                 Picker("Translate to", selection: $viewModel.toLang) {
-                    ForEach(languages, id: \.self) { language in
-                        Text(language).tag(language)
+                    ForEach(viewModel.allLanguages, id: \.self) { language in
+                        Text(language.rawValue).tag(language)
                     }
                 }
                 .labelsHidden()
