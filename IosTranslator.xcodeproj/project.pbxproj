@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3C82F5260E4CEFC03259E3AC /* Pods_IosTranslator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2D23D41AE9056438692454 /* Pods_IosTranslator.framework */; };
+		822CD3AF2ADC54F200873DCE /* LiveViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822CD3AE2ADC54F200873DCE /* LiveViewViewModel.swift */; };
+		822CD3B12ADD545800873DCE /* DataScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822CD3B02ADD545700873DCE /* DataScannerView.swift */; };
+		822CD3B32ADD8F7E00873DCE /* LanguageChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822CD3B22ADD8F7E00873DCE /* LanguageChangeView.swift */; };
 		8232A6E82ACC902B003DA5D7 /* IosTranslatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8232A6E72ACC902B003DA5D7 /* IosTranslatorApp.swift */; };
 		8232A6EA2ACC902B003DA5D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8232A6E92ACC902B003DA5D7 /* ContentView.swift */; };
 		8232A6EC2ACC902E003DA5D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8232A6EB2ACC902E003DA5D7 /* Assets.xcassets */; };
@@ -22,6 +25,9 @@
 
 /* Begin PBXFileReference section */
 		4C2D23D41AE9056438692454 /* Pods_IosTranslator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IosTranslator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		822CD3AE2ADC54F200873DCE /* LiveViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewViewModel.swift; sourceTree = "<group>"; };
+		822CD3B02ADD545700873DCE /* DataScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataScannerView.swift; sourceTree = "<group>"; };
+		822CD3B22ADD8F7E00873DCE /* LanguageChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageChangeView.swift; sourceTree = "<group>"; };
 		8232A6E42ACC902B003DA5D7 /* IosTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IosTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8232A6E72ACC902B003DA5D7 /* IosTranslatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosTranslatorApp.swift; sourceTree = "<group>"; };
 		8232A6E92ACC902B003DA5D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,7 +61,6 @@
 				F48BD18D432818D198978912 /* Pods-IosTranslator.debug.xcconfig */,
 				FE8DFE3A4681A18A6A68ED6F /* Pods-IosTranslator.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -119,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				827C727F2AD7142D00E8ADD6 /* TranslateViewViewModel.swift */,
+				822CD3AE2ADC54F200873DCE /* LiveViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -130,6 +136,8 @@
 				8232A6F92ACC9362003DA5D7 /* TranslateView.swift */,
 				8232A6FB2ACC937F003DA5D7 /* LiveView.swift */,
 				8232A6FD2ACC9388003DA5D7 /* SettingsView.swift */,
+				822CD3B02ADD545700873DCE /* DataScannerView.swift */,
+				822CD3B22ADD8F7E00873DCE /* LanguageChangeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -153,8 +161,8 @@
 				8232A6E02ACC902B003DA5D7 /* Sources */,
 				8232A6E12ACC902B003DA5D7 /* Frameworks */,
 				8232A6E22ACC902B003DA5D7 /* Resources */,
-				F787C4C6DFDD7A84159D389C /* [CP] Embed Pods Frameworks */,
 				D1FA7D4BD54827F5BB518C4E /* [CP] Copy Pods Resources */,
+				EBE976D4052BBAF07275D802 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,7 +258,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IosTranslator/Pods-IosTranslator-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F787C4C6DFDD7A84159D389C /* [CP] Embed Pods Frameworks */ = {
+		EBE976D4052BBAF07275D802 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -275,12 +283,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				827C72802AD7142D00E8ADD6 /* TranslateViewViewModel.swift in Sources */,
+				822CD3B12ADD545800873DCE /* DataScannerView.swift in Sources */,
+				822CD3B32ADD8F7E00873DCE /* LanguageChangeView.swift in Sources */,
 				8232A6FE2ACC9388003DA5D7 /* SettingsView.swift in Sources */,
 				8232A6FC2ACC937F003DA5D7 /* LiveView.swift in Sources */,
 				827C72822AD71EF600E8ADD6 /* Language.swift in Sources */,
 				8232A6EA2ACC902B003DA5D7 /* ContentView.swift in Sources */,
 				8232A6FA2ACC9362003DA5D7 /* TranslateView.swift in Sources */,
 				8232A6E82ACC902B003DA5D7 /* IosTranslatorApp.swift in Sources */,
+				822CD3AF2ADC54F200873DCE /* LiveViewViewModel.swift in Sources */,
 				827C72842AD7273700E8ADD6 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +425,7 @@
 				DEVELOPMENT_TEAM = 25PD9MT4H7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "The app needs camera access to scan text";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -444,6 +456,7 @@
 				DEVELOPMENT_TEAM = 25PD9MT4H7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "The app needs camera access to scan text";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

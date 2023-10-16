@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject private var vm = LiveViewViewModel()
+    
     var body: some View {
         TabView{
             NavigationView {
@@ -21,11 +24,17 @@ struct ContentView: View {
             NavigationView {
                 LiveView()
                     .navigationTitle("Live")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .environmentObject(vm)
+                    .task {
+                        await vm.requestDataScannerAccessStatus()
+                    }
             }
             .tabItem {
                 Label("Live", systemImage: "camera")
             }
         }
+        .toolbarBackground(.ultraThinMaterial, for: .tabBar)
     }
 }
 

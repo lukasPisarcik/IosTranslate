@@ -24,7 +24,6 @@ class TranslateViewViewModel: ObservableObject {
             print("invalid")
             return
         }
-                
         let translator = Translator.translator(
             options: TranslatorOptions(
                 sourceLanguage: fromLang,
@@ -53,10 +52,6 @@ class TranslateViewViewModel: ObservableObject {
     }
     
     func toggleLanguageSwitch(){
-        print("From Language: \(fromLang)")
-        print("To Language: \(toLang)")
         (fromLang, toLang) = (toLang, fromLang)
-        print("*From Language: \(fromLang)")
-        print("To Language: \(toLang)")
     }
 }

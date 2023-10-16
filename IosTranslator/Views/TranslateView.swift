@@ -9,8 +9,8 @@ import SwiftUI
 
 struct TranslateView: View {
     
-    @StateObject var viewModel = TranslateViewViewModel()
-        
+    @EnvironmentObject var viewModel: TranslateViewViewModel
+
     var body: some View {
         
         VStack {
@@ -20,31 +20,7 @@ struct TranslateView: View {
                 .textFieldStyle(.roundedBorder)
                 .padding(
                 )
-            HStack {
-                // Language change
-                Picker("Translate to", selection: $viewModel.fromLang) {
-                    ForEach(viewModel.allLanguages, id: \.self) { language in
-                        Text(language.rawValue).tag(language)
-                    }
-                }
-                .labelsHidden()
-                
-                // Change inputs button
-                Button {
-                    viewModel.toggleLanguageSwitch()
-                } label: {
-                    Image(systemName: "repeat")
-                }
-                .buttonStyle(.borderedProminent)
-                
-                // Language change
-                Picker("Translate to", selection: $viewModel.toLang) {
-                    ForEach(viewModel.allLanguages, id: \.self) { language in
-                        Text(language.rawValue).tag(language)
-                    }
-                }
-                .labelsHidden()
-            }
+            LanguageChangeView()
             
             // Translation result
             TextField("Translation...", text: $viewModel.outputText)

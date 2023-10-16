@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct IosTranslatorApp: App {
+    @StateObject private var viewModel = TranslateViewViewModel()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(viewModel)
         }
     }
 }
